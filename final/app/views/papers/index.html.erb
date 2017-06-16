@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Papers</h1>
-
-<table>
+<h2>國立台北最強大學   成績單</h2>
+<h1><b>成績列表</b></h1>
+<%= link_to '新增學生', new_paper_path, class: "btn btn-success btn-m" %>
+<hr>
+<h3>分數級別說明：９０分以上Ｓ／８０～８９：Ａ／７０～７９：Ｂ級／６０～６９：Ｃ級／未滿６０：Ｄ級</h3>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Student</th>
-      <th>Score</th>
-      <th colspan="3"></th>
+      <th>姓名</th>
+      <th>學號</th>
+      <th>分數</th>
+      <th colspan="3">處理</th>
     </tr>
   </thead>
 
@@ -17,10 +19,9 @@
       <tr>
         <td><%= paper.name %></td>
         <td><%= paper.student_id %></td>
-        <td><%= paper.score %></td>
-        <td><%= link_to 'Show', paper %></td>
-        <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
-        <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to paper.set_score(paper.score) , paper %> 級(<%= paper.score %>)</td>
+        <td><%= link_to '編輯', edit_paper_path(paper), class: "btn btn-success btn-xs" %></td>
+        <td><%= link_to '刪除', paper, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Paper', new_paper_path %>
+
